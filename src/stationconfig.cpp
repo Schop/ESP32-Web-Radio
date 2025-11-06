@@ -142,7 +142,7 @@ void setup_stationConfig() {
     // ### Send HTML-code to Browser
     request->send(200, "text/html", s);
 
-    // ### Reboot if a sender was chosen by webinterface (see above)
+    // ### Reboot if a station was chosen by webinterface (see above)
     if (needReboot) {
       delay(1000);
       ESP.restart();

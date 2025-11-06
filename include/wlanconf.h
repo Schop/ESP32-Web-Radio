@@ -13,24 +13,24 @@ const char MAIN_page[] PROGMEM = R"=====(
     </title>
   <head>
   <body>
-    <h1>Webradio WLAN-Einstellung</h1>
+    <h1>Webradio WLAN Settings</h1>
     *mark1begin*
-    <h3>WLAN-Einstellungen</h3>
+    <h3>WLAN Settings</h3>
     <form method="POST">
       <p>
-        <h4>WLAN-Name (SSID):</h4>
+        <h4>WLAN Name (SSID):</h4>
         <input type="text" name="ssid" value="*ssid*">
       </p>
       <p>
-        <h4>WLAN-Passwort:</h4>
+        <h4>WLAN Password:</h4>
         <input type="password" name="password" value="*password*">
       </p>
       <!--<p>
-        <h4>Zeitserver (NTP):</h4>
-        Falls nicht klar ist, was das ist,<br/>dann sollte es <b>at.pool.ntp.org</b> bleiben.<br/>
+        <h4>Time Server (NTP):</h4>
+        If you don't know what this is,<br/>it should remain <b>at.pool.ntp.org</b>.<br/>
         <input type="text" name="ntpserver" value="*ntpserver*">
       </p>-->
-      <input type="submit" value="speichern">
+      <input type="submit" value="Save">
     </form>
     *mark1end*
     <p>

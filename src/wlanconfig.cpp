@@ -2,7 +2,7 @@
 /* ***********************************************************************
  *  This is used to configure and establish a WLAN-connection
  *  It works the following way:
- *  - Loading cerdentials from flash
+ *  - Loading credentials from flash
  *       - ssid
  *       - password
  *       - ntpserver
@@ -11,12 +11,12 @@
  *      - a change in AP-mode (NOT rebooting!!!) 
  *      - user calls http://192.168.4.1
  *      - displays HTML-code from wlanconf.h with filled in credentials
- *      - user puts correct ceredentials in it
+ *      - user puts correct credentials in it
  *      - when sending the form by submit, the credentials are updated in flash (ONLÝ THEN*)
  *      - reboots in station-mode and begins the next try to connect with new credentials
  *  => This happens infinite, until connection can be established
- *      
- *  It is used bei call of "makeWLAN()" (usaly in 'setup()')
+ *
+ *  It is used by call of "makeWLAN()" (usually in 'setup()')
  *  It returns "true" when connection successful
  *  
  *  Libraries which are used and included here (no need to include them otherwhere for this use)
@@ -59,7 +59,7 @@ int    bootAsAP;
 void makeConfigAP();
 void serverLoop();
 
-// ### Usally should be called in 'setup()'
+// ### Usually should be called in 'setup()'
 bool makeWLAN()
 {
   preferences.begin("credentials", false);
@@ -74,16 +74,16 @@ bool makeWLAN()
 
   int tryCount = 0;
   if (ssid == "" || password == ""){
-    Serial.println("Keine WLAN-Logindaten gespeichert!");
+    Serial.println("No WLAN credentials stored!");
     ssid = "blub"; password = "blah";
     tryCount = MAXWLANTRY;
   }
 
   if (tryCount < MAXWLANTRY) {
-    // Mit Wi-Fi verbinden
+    // Connect to Wi-Fi
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid.c_str(), password.c_str());
-    Serial.print("Verbinde mit WiFi ..");
+    Serial.print("Connecting to WiFi ..");
     while ((WiFi.status() != WL_CONNECTED) && (tryCount<MAXWLANTRY)) {
       Serial.print('.');
       delay(1000);
@@ -96,9 +96,9 @@ bool makeWLAN()
   }
 
   if (tryCount < MAXWLANTRY) {
-    Serial.print(F("IP-Adresse per DHCP ist "));
+    Serial.print(F("IP address via DHCP is "));
     Serial.println(WiFi.localIP());  
-    // Für den Automatik-Test
+    // For automatic testing
     if (TESTMODUS) {
       preferences.putString("password", "XXX"); 
     }
@@ -117,7 +117,7 @@ bool makeWLAN()
 // This function is infinite, until new credentials ar given - in this case it reboots
 void makeConfigAP() {
 
-  Serial.println("Erstelle AP (Access Point)…");
+  Serial.println("Creating AP (Access Point)...");
   WiFi.mode(WIFI_AP);
   delay(500);  
   
@@ -181,7 +181,7 @@ void makeConfigAP() {
     if (gotAnswer) {
       s.replace("*mark1begin*", "<!--");
       s.replace("*mark1end*", "-->");
-      s.replace("*feedback*", "<div style='color:#CC0000'><h1>Verbindung wird versucht...</h1><h2>Sollte das Radio nicht starten, bitte in 20 Sek. wieder mit dem WLAN WEBRADIO verbinden und diese Seite neu aufrufen.</h2></div>");
+      s.replace("*feedback*", "<div style='color:#CC0000'><h1>Attempting connection...</h1><h2>If the radio does not start, please reconnect to WEBRADIO WiFi network in 20 seconds and reload this page.</h2></div>");
     } else {
       s.replace("*mark1begin*", "");
       s.replace("*mark1end*", "");
@@ -198,7 +198,7 @@ void makeConfigAP() {
 
   }); 
   server.begin();        //Start server
-  Serial.println("HTTP-Server gestartet");
+  Serial.println("HTTP server started");
 
   serverLoop();
 }
@@ -207,6 +207,6 @@ void makeConfigAP() {
 void serverLoop() {
   while (true) {
     delay(1000);
-    Serial.println("Server läuft ...");
+    Serial.println("Server running ...");
   }
 }

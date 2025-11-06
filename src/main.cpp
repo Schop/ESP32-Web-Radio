@@ -49,7 +49,7 @@ void setup() {
   esp_task_wdt_add(NULL);
   
   // -------------------
-  Serial.println("Setting up sender list...");
+  Serial.println("Setting up station list...");
   setup_stationList();
   
   Serial.println("Setting up audio...");
