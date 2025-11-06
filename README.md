@@ -2,6 +2,10 @@
 
 This project has been converted from Arduino IDE format to PlatformIO format for better development experience and dependency management.
 
+The orignal idea is described in this blog https://www.az-delivery.de/blogs/azdelivery-blog-fur-arduino-und-raspberry-pi/internet-radio-mit-dem-esp32
+
+The original codebase is here: https://drive.google.com/drive/folders/1UETdzEX5oD7GiYwbKzeMOZyNJ2Hm-NH2
+
 ## Project Structure
 
 ```
